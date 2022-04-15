@@ -12,7 +12,7 @@ var validation = new Validation();
 
 getLocalStorage();
 
-function layThongTinNhanVien(){
+function layThongTinNhanVien(isChecking = true){
     var taiKhoan = getEle('tknv').value;
     var tenNV = getEle('name').value;
     var emailNV = getEle('email').value;
@@ -31,8 +31,12 @@ function layThongTinNhanVien(){
 
     isValid &= validation.kiemTraRong(taiKhoan, "tbTKNV", "(*) vui lòng nhập tài khoản") &&
     validation.kiemTraDoDaiKyTu(taiKhoan, "tbTKNV", "(*) vui lòng nhập tài khoản có từ 4 - 6 ký tự", 4, 6 ) &&
-    validation.kiemTraSo(taiKhoan, "tbTKNV", "(*) vui lòng nhập tài khoản là ký tự số") 
+    validation.kiemTraSo(taiKhoan, "tbTKNV", "(*) vui lòng nhập tài khoản là ký tự số");
     // && validation.kiemTraTrung(taiKhoan, "tbTKNV", "(*) tài khoản đã tồn tại", dsnv.arr);
+    
+    if(isChecking == true){
+        isValid = validation.kiemTraTrung(taiKhoan, "tbTKNV", "(*) tài khoản đã tồn tại", dsnv.arr);
+    }
 
 
     // kiem tra  ten nhan vien
@@ -171,8 +175,8 @@ function suaNV(taiKhoan){
 
 //cap nhat nhan vien
 
-getEle('btnCapNhat').addEventListener("click", function(){
-    var nhanVien = layThongTinNhanVien();
+getEle('btnCapNhat').addEventListener("click", function(false){
+    var nhanVien = layThongTinNhanVien(false);
 
     dsnv.capNhatNV(nhanVien);
     console.log(nhanVien);
