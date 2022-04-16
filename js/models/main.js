@@ -175,7 +175,7 @@ function suaNV(taiKhoan){
 
 //cap nhat nhan vien
 
-getEle('btnCapNhat').addEventListener("click", function(false){
+getEle('btnCapNhat').addEventListener("click", function(){
     var nhanVien = layThongTinNhanVien(false);
 
     dsnv.capNhatNV(nhanVien);
